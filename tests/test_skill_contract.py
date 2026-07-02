@@ -10,8 +10,10 @@ def test_skill_files_exist():
         'README.md',
         'references/workflows.md',
         'references/query-crafting-workflow.md',
+        'references/result-interpretation-workflow.md',
         'references/troubleshooting.md',
         'templates/title-to-trends-query-candidates.md',
+        'templates/trends-result-summary.md',
         'templates/client-trends-radar.config.json',
         'templates/hermes-cron-script.sh',
     ]:
@@ -41,3 +43,15 @@ def test_query_crafting_workflow_discourages_literal_titles():
     assert 'Problem query' in workflow
     assert 'Action query' in workflow
     assert 'Do not search this literally' in template
+
+
+def test_result_interpretation_requires_clear_index_numbers():
+    skill = (ROOT / 'SKILL.md').read_text(encoding='utf-8')
+    workflow = (ROOT / 'references/result-interpretation-workflow.md').read_text(encoding='utf-8')
+    template = (ROOT / 'templates/trends-result-summary.md').read_text(encoding='utf-8')
+    assert 'clear graph numbers' in skill.lower()
+    assert 'not absolute search volume' in workflow
+    for required in ['Peak value', 'Peak period', 'Non-zero periods', 'Recent 4-period average']:
+        assert required in workflow
+        assert required in template
+    assert 'usable / weak_signal / unclear / rate_limited / blocked_or_failed' in template

@@ -21,6 +21,7 @@ It also covers operational workflows for:
 - installing the scraper
 - warming a persistent Windows Chrome/Edge profile
 - collecting one Google Trends query
+- summarizing clear Trends index numbers from the graph
 - running a slow rotating cron radar
 - interpreting errors like 429 and no-data cases
 - using Trends as SEO ideation, not search-volume truth
@@ -56,8 +57,10 @@ The skill is intentionally practical. It includes:
 SKILL.md
 references/workflows.md
 references/query-crafting-workflow.md
+references/result-interpretation-workflow.md
 references/troubleshooting.md
 templates/title-to-trends-query-candidates.md
+templates/trends-result-summary.md
 templates/client-trends-radar.config.json
 templates/hermes-cron-script.sh
 ```
@@ -70,10 +73,11 @@ templates/hermes-cron-script.sh
 3. Run fixture tests.
 4. Warm/login a dedicated Windows browser profile if needed.
 5. Run one live scrape.
-6. Configure a client seed list.
-7. Schedule one-query-per-tick cron every ~8h.
-8. Save raw JSON and report concise summaries.
-9. Validate promising ideas with SEO data before action.
+6. Summarize clear Trends index numbers and plain-language interpretation.
+7. Configure a client seed list.
+8. Schedule one-query-per-tick cron every ~8h.
+9. Save raw JSON and report concise summaries.
+10. Validate promising ideas with SEO data before action.
 ```
 
 ## Strong guardrails

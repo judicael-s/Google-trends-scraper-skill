@@ -20,6 +20,7 @@ Use this skill when the user wants to:
 - craft Trends-ready keyword candidates from article titles, sentences, campaign ideas, or rough concepts before scraping
 - compare query demand timing across markets or regions
 - run a slow radar cron over seed keywords
+- turn raw Trends graph output into clear index numbers and result summaries
 - troubleshoot Google Trends 429 / headless browser blocking
 - use the standalone repo `judicael-s/Google-trends-scraper`
 - equip Hermes, Open Claw Agent, Claude Code, Codex, or another agent runner with clear scraper workflows and cron procedures
@@ -42,6 +43,26 @@ Recommended candidate buckets:
 - local/regional query
 
 Then test only the strongest 1–3 candidates or add them to the slow rotating cron config.
+
+## Clear result summaries
+
+After each scrape, use `references/result-interpretation-workflow.md` and `templates/trends-result-summary.md` to present clear graph numbers before recommendations.
+
+Always show, when available:
+
+- status: `usable`, `weak_signal`, `unclear`, `rate_limited`, or `blocked_or_failed`
+- data type: Google Trends index values, **not** absolute search volume
+- timeline points
+- non-zero periods and zero/low-display periods
+- peak value and peak period
+- latest value
+- average value
+- recent 4-period average when available
+- trend delta
+- region count and top regions
+- related query count and top related queries
+
+Explain that `100` is the peak inside the selected query/geo/timeframe and `0` means too low to display, not guaranteed zero searches.
 
 ## Source repo
 
@@ -155,6 +176,8 @@ The script prints a concise summary only when a query is due. Empty stdout means
 - Keep per-client browser profiles separate.
 
 ## Output interpretation
+
+For any non-empty scraper result, first provide a clear result summary using `templates/trends-result-summary.md`.
 
 | Signal | Meaning |
 |---|---|
