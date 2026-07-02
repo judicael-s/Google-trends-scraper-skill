@@ -7,6 +7,7 @@ It can be used by **Hermes**, **Open Claw Agent**, **Claude Code**, **Codex**, o
 This skill gives agents and users clear workflows for practical use cases such as:
 
 - testing and comparing SEO/content ideas
+- transforming article titles, sentences, and rough ideas into Trends-ready keyword candidates before scraping
 - estimating market interest directionally with Google Trends index data
 - discovering rising trends and related queries
 - finding promising keywords worldwide or regionally
@@ -54,7 +55,9 @@ The skill is intentionally practical. It includes:
 ```text
 SKILL.md
 references/workflows.md
+references/query-crafting-workflow.md
 references/troubleshooting.md
+templates/title-to-trends-query-candidates.md
 templates/client-trends-radar.config.json
 templates/hermes-cron-script.sh
 ```
@@ -63,13 +66,14 @@ templates/hermes-cron-script.sh
 
 ```text
 1. Clone standalone scraper.
-2. Run fixture tests.
-3. Warm/login a dedicated Windows browser profile if needed.
-4. Run one live scrape.
-5. Configure a client seed list.
-6. Schedule one-query-per-tick cron every ~8h.
-7. Save raw JSON and report concise summaries.
-8. Validate promising ideas with SEO data before action.
+2. Craft Trends-ready query candidates if the input is a title/sentence, not a literal query.
+3. Run fixture tests.
+4. Warm/login a dedicated Windows browser profile if needed.
+5. Run one live scrape.
+6. Configure a client seed list.
+7. Schedule one-query-per-tick cron every ~8h.
+8. Save raw JSON and report concise summaries.
+9. Validate promising ideas with SEO data before action.
 ```
 
 ## Strong guardrails

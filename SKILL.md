@@ -17,6 +17,7 @@ Use this skill when the user wants to:
 
 - operate a **free** Google Trends scraper that leverages Playwright instead of a paid Trends scraper
 - inspect seasonality for SEO/content ideas
+- craft Trends-ready keyword candidates from article titles, sentences, campaign ideas, or rough concepts before scraping
 - compare query demand timing across markets or regions
 - run a slow radar cron over seed keywords
 - troubleshoot Google Trends 429 / headless browser blocking
@@ -24,6 +25,23 @@ Use this skill when the user wants to:
 - equip Hermes, Open Claw Agent, Claude Code, Codex, or another agent runner with clear scraper workflows and cron procedures
 
 Do **not** use Trends as search volume truth. In short: Trends is not search volume. It is an indexed signal for ideation, timing, and relative interest. Validate important opportunities later with GSC, DataForSEO, Google Ads, SERP evidence, or analytics.
+
+## Query crafting from titles or sentences
+
+When the user provides a full title, sentence, page title, or rough idea, do **not** search it literally by default. First use `references/query-crafting-workflow.md` and `templates/title-to-trends-query-candidates.md` to extract intent and generate short, natural Google Trends query candidates.
+
+Recommended candidate buckets:
+
+- broad anchor
+- problem query
+- action query
+- audience/level query
+- commercial query
+- alternative wording
+- time-sensitive query
+- local/regional query
+
+Then test only the strongest 1–3 candidates or add them to the slow rotating cron config.
 
 ## Source repo
 
@@ -129,6 +147,7 @@ The script prints a concise summary only when a query is due. Empty stdout means
 ## Query selection rules
 
 - Start with broad anchors before long article titles.
+- When input is an article title, page title, sentence, or rough idea, craft short Trends-ready query candidates before scraping; do not search the full title literally by default.
 - Use cluster terms as spokes after a broad anchor validates seasonal interest.
 - Rotate seed terms slowly.
 - Do not repeat identical query/geo/timeframe combinations too often.
