@@ -4,7 +4,18 @@ A skill/workflow pack for operating the standalone [Google Trends Playwright Scr
 
 It can be used by **Hermes**, **Open Claw Agent**, **Claude Code**, **Codex**, or any agent/workflow runner that can follow markdown procedures and execute shell/PowerShell commands.
 
-This skill gives agents and users clear workflows for:
+This skill gives agents and users clear workflows for practical use cases such as:
+
+- testing and comparing SEO/content ideas
+- estimating market interest directionally with Google Trends index data
+- discovering rising trends and related queries
+- finding promising keywords worldwide or regionally
+- comparing which countries or regions search for which keywords
+- inspecting short-term and long-term demand windows: daily, weekly/hebdo, monthly, yearly, or multi-year
+- timing seasonal campaigns and content refreshes
+- running cron-based keyword radars
+
+It also covers operational workflows for:
 
 - installing the scraper
 - warming a persistent Windows Chrome/Edge profile
