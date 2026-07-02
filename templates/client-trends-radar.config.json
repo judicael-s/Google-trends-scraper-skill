@@ -1,0 +1,25 @@
+{
+  "client_id": "client-slug",
+  "site_url": "https://example.com",
+  "geo": "FR",
+  "hl": "fr-FR",
+  "timeframe": "today 12-m",
+  "region_resolution": "REGION",
+  "min_hours_between_same_query": 24,
+  "keep_open_ms": 3500,
+  "timeout_seconds": 180,
+  "queries": [
+    {
+      "query": "primary seasonal anchor",
+      "intent": "broad anchor"
+    },
+    {
+      "query": "secondary cluster phrase",
+      "intent": "spoke validation"
+    },
+    {
+      "query": "third query idea",
+      "intent": "related opportunity"
+    }
+  ]
+}
