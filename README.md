@@ -1,6 +1,8 @@
 # Google Trends Scraper Skill
 
-A Hermes skill for operating the standalone [Google Trends Playwright Scraper](https://github.com/judicael-s/Google-trends-scraper).
+A skill/workflow pack for operating the standalone [Google Trends Playwright Scraper](https://github.com/judicael-s/Google-trends-scraper): a **free**, Playwright-powered Google Trends scraper.
+
+It can be used by **Hermes**, **Open Claw Agent**, **Claude Code**, **Codex**, or any agent/workflow runner that can follow markdown procedures and execute shell/PowerShell commands.
 
 This skill gives agents and users clear workflows for:
 

@@ -1,6 +1,6 @@
 ---
 name: google-trends-scraper
-description: Use the standalone Google Trends Playwright scraper for slow SEO ideation, seasonality checks, region insights, related-query discovery, and cron-based query monitoring.
+description: Use the free standalone Playwright Google Trends scraper for slow SEO ideation, seasonality checks, region insights, related-query discovery, and cron-based query monitoring from Hermes, Open Claw Agent, Claude Code, Codex, or similar agent runners.
 version: 0.1.0
 author: Organic Agent / Judicael S
 license: MIT
@@ -15,12 +15,13 @@ metadata:
 
 Use this skill when the user wants to:
 
-- collect Google Trends data without a paid Trends scraper
+- operate a **free** Google Trends scraper that leverages Playwright instead of a paid Trends scraper
 - inspect seasonality for SEO/content ideas
 - compare query demand timing across markets or regions
 - run a slow radar cron over seed keywords
 - troubleshoot Google Trends 429 / headless browser blocking
 - use the standalone repo `judicael-s/Google-trends-scraper`
+- equip Hermes, Open Claw Agent, Claude Code, Codex, or another agent runner with clear scraper workflows and cron procedures
 
 Do **not** use Trends as search volume truth. In short: Trends is not search volume. It is an indexed signal for ideation, timing, and relative interest. Validate important opportunities later with GSC, DataForSEO, Google Ads, SERP evidence, or analytics.
 
