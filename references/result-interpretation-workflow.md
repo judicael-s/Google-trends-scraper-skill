@@ -48,6 +48,17 @@ From `interest_over_time` and `summary`, compute or display:
 | Related query count | count of related queries returned |
 | Top related queries | first 3–5 related queries |
 
+For a recurring 12-month weekly radar, also compute:
+
+- active weeks and active share;
+- strongest peak weeks;
+- peak months with maximum value and active-week count;
+- seasonality class;
+- a plain-language seasonality interpretation;
+- the raw JSON path for auditability.
+
+Use the shared seasonality labels from `references/durable-radar-workflow.md`: `no timeline data`, `no visible Trends demand`, `sparse / low Trends signal`, `seasonal peak`, `sparse multi-peak`, `recurring / broad-season`, and `evergreen / all-year`.
+
 ## Plain-language interpretation rules
 
 Use the numbers to explain what happened:
@@ -83,6 +94,10 @@ Timeframe: [timeframe]
 | Recent 4-period average |  |
 | Region count |  |
 | Related query count |  |
+| Active weeks |  |
+| Peak weeks |  |
+| Peak months |  |
+| Seasonality class |  |
 
 ### Top regions
 | Region | Index value |
@@ -94,6 +109,10 @@ Timeframe: [timeframe]
 
 ### Interpretation
 - [plain-language explanation]
+
+### Evidence
+- Raw JSON: [path]
+- Validation status: `trends_ideation_only`
 
 ### What this does / does not mean
 - This shows relative search interest inside the selected Trends context.

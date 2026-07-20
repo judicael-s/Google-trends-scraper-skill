@@ -1,7 +1,7 @@
 ---
 name: google-trends-scraper
 description: Use the free standalone Playwright Google Trends scraper for slow SEO ideation, seasonality checks, region insights, related-query discovery, and cron-based query monitoring from Hermes, Open Claw Agent, Claude Code, Codex, or similar agent runners.
-version: 0.1.0
+version: 0.2.0
 author: Organic Agent / Judicael S
 license: MIT
 metadata:
@@ -44,6 +44,8 @@ Recommended candidate buckets:
 
 Then test only the strongest 1–3 candidates or add them to the slow rotating cron config.
 
+For recurring radars, load `references/durable-radar-workflow.md`. Prefer 2–4-word human queries, preserve topic/source/intent provenance, exclude already-searched exact queries from state/JSONL, and rotate across website-specific topic buckets. Use `templates/google-trends-topic-buckets.json` as a generic shape—not as a fixed taxonomy.
+
 ## Clear result summaries
 
 After each scrape, use `references/result-interpretation-workflow.md` and `templates/trends-result-summary.md` to present clear graph numbers before recommendations.
@@ -79,6 +81,7 @@ trends_runner.js              # Windows-side Playwright collector
 run-trends.ps1                # PowerShell wrapper for one scrape
 open-trends-profile.ps1       # manual login/warmup helper
 rotating_trends_cron.py       # one-query-per-tick cron wrapper
+build_trends_radar_config.py  # evidence + topic buckets -> reusable client config
 examples/client-trends-radar.config.json
 ```
 
@@ -90,7 +93,8 @@ Hermes / WSL / cron
   -> powershell.exe run-trends.ps1
   -> Windows Playwright persistent Chrome/Edge profile
   -> Google Trends normalized JSON
-  -> raw archive + concise cron summary
+  -> raw archive + durable Markdown/JSONL/optional Obsidian log
+  -> alert-only concise cron summary
 ```
 
 Reason: Google Trends often returns 429 to clean WSL/headless/fresh automation sessions. A persistent visible Windows browser profile is closer to the user’s normal browser and can be logged in/warmed once.
@@ -163,7 +167,9 @@ script: client_google_trends_radar.sh
 no_agent: true
 ```
 
-The script prints a concise summary only when a query is due. Empty stdout means no alert.
+The runner logs every due check before deciding whether to print. With `alert_policy.mode: opportunities_only`, ordinary checks produce empty stdout while durable Markdown/JSONL/optional Obsidian history still grows.
+
+Storage must adapt to the user's setup. Local Markdown plus JSONL is the portable default. Add `obsidian_markdown` only when a vault exists (via `vault_path` or `OBSIDIAN_VAULT_PATH`). Multiple destinations may be enabled together.
 
 ## Query selection rules
 
@@ -171,6 +177,7 @@ The script prints a concise summary only when a query is due. Empty stdout means
 - When input is an article title, page title, sentence, or rough idea, craft short Trends-ready query candidates before scraping; do not search the full title literally by default.
 - Use cluster terms as spokes after a broad anchor validates seasonal interest.
 - Rotate seed terms slowly.
+- Rotate across topical buckets rather than exhausting one cluster.
 - Do not repeat identical query/geo/timeframe combinations too often.
 - Use market-specific `geo` and `hl` values.
 - Keep per-client browser profiles separate.
@@ -218,6 +225,8 @@ That is expected. The runner launches Windows Chrome via PowerShell instead.
 ## Linked files
 
 - `templates/client-trends-radar.config.json` — starting config
+- `templates/google-trends-topic-buckets.json` — generic multi-topic query strategy starter
 - `templates/hermes-cron-script.sh` — cron script template
+- `references/durable-radar-workflow.md` — logging, storage, seasonality, alerting, and validation contract
 - `references/workflows.md` — detailed workflows and examples
 - `references/troubleshooting.md` — common failures and fixes

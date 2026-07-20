@@ -11,10 +11,12 @@ def test_skill_files_exist():
         'references/workflows.md',
         'references/query-crafting-workflow.md',
         'references/result-interpretation-workflow.md',
+        'references/durable-radar-workflow.md',
         'references/troubleshooting.md',
         'templates/title-to-trends-query-candidates.md',
         'templates/trends-result-summary.md',
         'templates/client-trends-radar.config.json',
+        'templates/google-trends-topic-buckets.json',
         'templates/hermes-cron-script.sh',
     ]:
         assert (ROOT / rel).exists(), rel
@@ -55,3 +57,22 @@ def test_result_interpretation_requires_clear_index_numbers():
         assert required in workflow
         assert required in template
     assert 'usable / weak_signal / unclear / rate_limited / blocked_or_failed' in template
+
+
+def test_durable_radar_contract_is_generic_and_storage_adaptive():
+    text = (ROOT / 'references/durable-radar-workflow.md').read_text(encoding='utf-8')
+    config = json.loads((ROOT / 'templates/client-trends-radar.config.json').read_text(encoding='utf-8'))
+    topics = json.loads((ROOT / 'templates/google-trends-topic-buckets.json').read_text(encoding='utf-8'))
+    for token in [
+        '2–4 words',
+        'Log every check',
+        'sparse multi-peak',
+        'raw JSON path',
+        'OBSIDIAN_VAULT_PATH',
+        'Google Trends is an ideation',
+    ]:
+        assert token in text
+    destination_types = {item['type'] for item in config['search_log']['destinations']}
+    assert {'markdown', 'jsonl', 'obsidian_markdown'} <= destination_types
+    assert config['alert_policy']['mode'] == 'opportunities_only'
+    assert len(topics['topics']) >= 5

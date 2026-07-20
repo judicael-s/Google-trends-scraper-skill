@@ -39,7 +39,7 @@ Extract:
 
 ### 2. Generate query candidates
 
-Generate 5–12 short queries across these buckets:
+Generate short human-typed queries, preferably 2–4 words, across multiple evidence-backed buckets. A one-word broad anchor or a justified 5–6-word phrase is acceptable when natural for the market. Do not reuse the education examples as a universal taxonomy.
 
 | Bucket | Purpose | Example |
 |---|---|---|
@@ -51,6 +51,8 @@ Generate 5–12 short queries across these buckets:
 | Alternative wording | Synonyms/slang | `remise à niveau maths` |
 | Time-sensitive query | Short-term trend | `bac maths sujet 2026` |
 | Local/regional query | Region/country-specific | `cours de maths Paris été` |
+
+For a reusable radar, translate these dimensions into website-specific topic buckets. A broadly applicable starting shape is: `core_offers`, `audience_needs`, `problems_and_outcomes`, `commercial_and_comparison`, `seasonal_and_events`, and `adjacent_opportunities`. Rename, add, or remove buckets based on the business model.
 
 ### 3. Score before scraping
 
@@ -130,7 +132,9 @@ Market: [geo/hl]
 ## Guardrails
 
 - Do not search full article titles literally unless the title itself is a known query pattern.
-- Avoid very long queries; 2–5 words is often better for Trends.
+- Avoid very long queries; 2–4 words is the preferred default for Trends.
 - Avoid brand names unless the user specifically wants brand demand.
 - For low-volume niches, use broader anchors first, then spokes.
+- Check state and cumulative JSONL history before selecting queries; do not regenerate exact query/geo/timeframe combinations already searched unless the cooldown/monitoring plan requires it.
+- Preserve `topic`, `intent`, `source`, and `selection_score` for every candidate.
 - Trends is not volume. Treat this as ideation and validate elsewhere.

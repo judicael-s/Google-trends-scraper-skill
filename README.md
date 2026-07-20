@@ -15,6 +15,9 @@ This skill gives agents and users clear workflows for practical use cases such a
 - inspecting short-term and long-term demand windows: daily, weekly/hebdo, monthly, yearly, or multi-year
 - timing seasonal campaigns and content refreshes
 - running cron-based keyword radars
+- generating short human-style query sets across website-specific topic buckets
+- logging every check to portable Markdown/JSONL and optional Obsidian/GBrain inputs
+- classifying active weeks, peak weeks/months, and seasonality
 
 It also covers operational workflows for:
 
@@ -58,10 +61,12 @@ SKILL.md
 references/workflows.md
 references/query-crafting-workflow.md
 references/result-interpretation-workflow.md
+references/durable-radar-workflow.md
 references/troubleshooting.md
 templates/title-to-trends-query-candidates.md
 templates/trends-result-summary.md
 templates/client-trends-radar.config.json
+templates/google-trends-topic-buckets.json
 templates/hermes-cron-script.sh
 ```
 
@@ -74,10 +79,11 @@ templates/hermes-cron-script.sh
 4. Warm/login a dedicated Windows browser profile if needed.
 5. Run one live scrape.
 6. Summarize clear Trends index numbers and plain-language interpretation.
-7. Configure a client seed list.
-8. Schedule one-query-per-tick cron every ~8h.
-9. Save raw JSON and report concise summaries.
-10. Validate promising ideas with SEO data before action.
+7. Generate a 2–4-word query set across website-specific topic buckets and exclude prior exact checks.
+8. Configure portable Markdown + JSONL storage; add Obsidian only if available.
+9. Schedule one-query-per-tick cron every ~8h with cross-topic rotation.
+10. Save every check and raw JSON, but alert only on errors/opportunities.
+11. Validate promising ideas with SEO data before action.
 ```
 
 ## Strong guardrails
